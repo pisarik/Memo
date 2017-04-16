@@ -9,14 +9,21 @@
 	
 	//"default_locale": "ru", need for internationalization, while only ru
 
-	"browser_action": {
-    "default_icon": "icon_48.png",
-    "default_popup": "popup.html"
-  },
+	// "browser_action": {
+ //    "default_icon": "icon_48.png",
+ //    "default_popup": "popup.html"
+ //  },
+
+  "content_scripts": [
+  	{
+  		"matches": ["*://*/*"],
+  		"js": ["wordLogger.js"]
+  	}
+  ],
 
   "permissions": [
   	"storage",
   	"notifications",
-    "https://googleapis.com/"
+    "https://ajax.googleapis.com/"
   ]
 }
