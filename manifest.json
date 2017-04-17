@@ -14,10 +14,14 @@
  //    "default_popup": "popup.html"
  //  },
 
+ 	"background":{
+ 		"scripts": ["background.js"]
+ 	},
+
   "content_scripts": [
   	{
   		"matches": ["*://*/*"],
-  		"js": ["wordLogger.js"]
+  		"js": ["wordLogger.js", "card.js", "translater.js"]
   	}
   ],
 
