@@ -14,6 +14,10 @@ class Card{
 		console.log("translation: " + this.translation);
 	}
 
+	toString(){
+		return "word: " + this.word + "\ntranslation: " + this.translation;
+	}
+
 	show(){
 		let options = {
 		  type: "basic",
