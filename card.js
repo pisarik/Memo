@@ -4,6 +4,11 @@ class Card{
 		this.translation = translation;
 	}
 
+	equals(card){
+		return this.word === card.word && 
+					 this.translation === card.translation;
+	}
+
 	print(){
 		console.log("word: " + this.word);
 		console.log("translation: " + this.translation);
