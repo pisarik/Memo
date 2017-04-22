@@ -21,7 +21,8 @@
   "content_scripts": [
   	{
   		"matches": ["*://*/*"],
-  		"js": ["wordLogger.js", "card.js", "translater.js", 
+  		"js": ["wordLogger.js", "card.js", "translater.js", "storageManager.js",
+  			"utilities.js",
   			"3rdparty/jquery-3.2.1.min.js", 
   			"3rdparty/bootstrap-3.3.7.min.js"],
   		"css": ["3rdparty/bootstrap-3.3.7.min.css"],

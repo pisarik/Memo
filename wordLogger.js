@@ -9,6 +9,8 @@ document.body.addEventListener('dblclick', function(){
 		let callback = function(translation){
 			let card = new Card(word, translation);
 
+			StorageManager.addCard(card);
+
 			showPopoverTranslation(translation);
 
 	  	chrome.runtime.sendMessage(null, card);
