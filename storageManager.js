@@ -35,9 +35,11 @@ class StorageManager{
 						console.log("New cards: " + result.cards);
 					});
 				});
+				return true;
 			}
 			else{
 				console.log("This card already exists: " + card);
+				return false;
 			}
 		});
 	}

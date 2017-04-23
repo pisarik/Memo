@@ -1,19 +1,22 @@
-//var storage = storage.chrome.local;
-
 document.body.addEventListener('dblclick', function(){
 	word = window.getSelection().toString();
 
 	if (word.length > 1){
 		console.log(word);
 		console.log(word.length);
+		
 		let callback = function(translation){
-			let card = new Card(word, translation);
-
-			StorageManager.addCard(card);
-
 			showPopoverTranslation(translation);
 
-	  	chrome.runtime.sendMessage(null, card);
+			// it should be executed on button 'add'
+			let card = new Card(word, translation);
+
+			console.log(card + '');
+
+			if (StorageManager.addCard(card)){
+				//notify background for adding new alarm
+	  		chrome.runtime.sendMessage(null, card);
+	  	}
 		}
 
 	  let translater = new GoogleTranslater();
