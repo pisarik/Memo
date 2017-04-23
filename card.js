@@ -22,8 +22,8 @@ class Card{
 	show(){
 		let options = {
 		  type: "basic",
-		  title: "Do you know that " + this.word + " translated as: ",
-		  message: this.translation,
+		  title: "Did you know, that...",
+		  message: card.word + " - " + card.translation,
 		  iconUrl: "icon_48.png"
 		};
 
