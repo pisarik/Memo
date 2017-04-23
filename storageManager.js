@@ -8,8 +8,19 @@ class StorageManager{
 		return chrome.storage.local;
 	}
 
-	static CARDS(callback){
-		StorageManager.STORAGE.get({'cards': []}, callback);
+	// async, therefore calls callback = function(card)
+	static getCardById(id, callback){
+		
+		StorageManager.STORAGE.get({'cards': []}, function(result){
+			let cards = result.cards;
+
+			for (let i = 0; i < cards.length; i++){
+				if (cards[i].id === id){
+					callback(cards[i]);
+				}
+			}
+		}
+		
 	}
 
 	static addCard(card){
