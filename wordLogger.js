@@ -25,41 +25,34 @@ document.body.addEventListener('dblclick', function(){
 function showPopoverTranslation(translation){
 	var a = document.createElement("span");
   a.setAttribute('tabindex', "0");
+  a.setAttribute('data-container', "body");
+  a.setAttribute('data-template', "<div class='MemoPopover' role='tooltip'><div class='arrow'></div><div class='popover-content'></div></div>");
   a.setAttribute('data-toggle', "popover");
   a.setAttribute('data-placement', "auto top");
   a.setAttribute('data-trigger', "focus");
-  // a.setAttribute('data-content','Some content inside the popover');
-  a.setAttribute('title', translation);
-
-
-  wordElem = window.getSelection();
+  a.setAttribute('data-content', translation);
 
 	var wordElem = window.getSelection();
   var range = wordElem.getRangeAt(0).cloneRange();
-  range.insertNode(a);
+  range.surroundContents(a);
   wordElem.removeAllRanges();
   wordElem.addRange(range);
 
   setTimeout(function(){
     $('[data-toggle="popover"]').popover("show");
    }, 50);
-
-  setTimeout(function(){
-  	$('[data-toggle="popover"]').popover("hide");
-    $('[data-toggle="popover"]').remove();
-   }, 2000);
 }
 
-//works
-// $('[data-toggle="popover"],[data-original-title]').popover("show");
 
-// $(document).on('click', function(e) {
-//   $('[data-toggle="popover"],[data-original-title]').each(function() {
-//     //the 'is' for buttons that trigger popups
-//     //the 'has' for icons within a button that triggers a popup
-//     if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
-//       $(this).popover('hide').data('bs.popover').inState.click = false // fix for BS 3.3.6
-//     }
+// popover disabling (because focus doesn't work after "show")
+$(document).on('click', function(e) {
+  $('[data-toggle="popover"],[data-original-title]').each(function() {
+    //the 'is' for buttons that trigger popups
+    //the 'has' for icons within a button that triggers a popup
+    if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+      $(this).popover('hide').data('bs.popover').inState.click = false // fix for BS 3.3.6
+      $(this).contents().unwrap();
+    }
 
-//   });
-// });
+  });
+});

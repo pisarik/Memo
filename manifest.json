@@ -21,11 +21,11 @@
   "content_scripts": [
   	{
   		"matches": ["*://*/*"],
-  		"js": ["wordLogger.js", "card.js", "translater.js", "storageManager.js",
-  			"utilities.js",
-  			"3rdparty/jquery-3.2.1.min.js", 
-  			"3rdparty/bootstrap-3.3.7.min.js"],
-  		"css": ["3rdparty/bootstrap-3.3.7.min.css"],
+  		"js": ["3rdparty/jquery-3.2.1.min.js", "3rdparty/bootstrap-3.3.7.min.js", 
+  			"wordLogger.js", "card.js", "translater.js", "storageManager.js",
+  			"utilities.js"  			 
+  			],
+  		"css": ["popover/memoPopover.css"],
   		"run_at": "document_end"
   	}
   ],
@@ -33,7 +33,6 @@
   "permissions": [
   	"storage",
   	"notifications",
-    "https://ajax.googleapis.com/",
-    "https://maxcdn.bootstrapcdn.com/"
+    "https://ajax.googleapis.com/"
   ]
 }
