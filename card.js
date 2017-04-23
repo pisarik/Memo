@@ -9,11 +9,6 @@ class Card{
 					 this.translation === card.translation;
 	}
 
-	print(){
-		console.log("word: " + this.word);
-		console.log("translation: " + this.translation);
-	}
-
 	toString(){
 		return "word: " + this.word + "\ntranslation: " + this.translation;
 	}
