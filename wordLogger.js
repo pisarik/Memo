@@ -13,10 +13,12 @@ document.body.addEventListener('dblclick', function(){
 
 			console.log(card + '');
 
-			if (StorageManager.addCard(card)){
-				//notify background for adding new alarm
-	  		chrome.runtime.sendMessage(null, card);
-	  	}
+			StorageManager.addCard(card, function(isAdded){
+				if (isAdded){
+					//notify background for adding new alarm
+		  		chrome.runtime.sendMessage(null, card);
+		  	}
+	  	});
 		}
 
 	  let translater = new GoogleTranslater();

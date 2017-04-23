@@ -19,11 +19,12 @@ class StorageManager{
 					callback(cards[i]);
 				}
 			}
-		}
-		
+		});
+
 	}
 
-	static addCard(card){
+	// async, therefore calls callback = function(isAdded)
+	static addCard(card, callback){
 		StorageManager.STORAGE.get({'cards': []}, function(result){
 			let cards = result.cards;
 
@@ -35,11 +36,11 @@ class StorageManager{
 						console.log("New cards: " + result.cards);
 					});
 				});
-				return true;
+				callback(true);
 			}
 			else{
 				console.log("This card already exists: " + card);
-				return false;
+				callback(false);
 			}
 		});
 	}
