@@ -1,22 +1,24 @@
-document.body.addEventListener('dblclick', function(){
-	let word = window.getSelection().toString();
+document.body.addEventListener('dblclick', function(event){
+	//show popover everywhere except input
+	if (event.target.nodeName !== "INPUT"){
+		let word = window.getSelection().toString();
 
-	if (word.length > 1){
-		console.log(word);
-		console.log(word.length);
+		if (word.length > 1){
+			console.log(word);
+			console.log(word.length);
 
-		let callback = function(translation){
-			showPopoverTranslation(word, translation);
+			let callback = function(translation){
+				showPopoverTranslation(word, translation);
+			}
+
+		  let translater = new GoogleTranslater();
+		  translater.translate(word, "en", "ru", callback);
 		}
-
-	  let translater = new GoogleTranslater();
-	  translater.translate(word, "en", "ru", callback);
 	}
-
 });
 
 function showPopoverTranslation(word, translation){
-	var a = document.createElement("span");
+	let a = document.createElement("span");
 	a.className = "MemoPopoverSpan";
   a.setAttribute('tabindex', "0");
   a.setAttribute('data-container', "body");
@@ -27,14 +29,15 @@ function showPopoverTranslation(word, translation){
   a.setAttribute('data-html', "true");
   a.setAttribute('data-content', "<b>" + translation + "</b>");
 
-	var wordElem = window.getSelection();
-  var range = wordElem.getRangeAt(0).cloneRange();
+	let wordElem = window.getSelection();
+  let range = wordElem.getRangeAt(0).cloneRange();
+
   range.surroundContents(a);
   wordElem.removeAllRanges();
   wordElem.addRange(range);
 
   $('.MemoPopoverSpan').popover().on('shown.bs.popover', function (eventShown) {
-	    var $popup = $('#' + $(eventShown.target).attr('aria-describedby'));
+	    let $popup = $('#' + $(eventShown.target).attr('aria-describedby'));
 	    $popup.find('button.memo-popover-add').click(function (e) {
 	        memoPopoverAddClick(word, translation);
 	    });
