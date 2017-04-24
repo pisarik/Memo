@@ -32,6 +32,7 @@ document.body.addEventListener('dblclick', function(){
 
 function showPopoverTranslation(translation){
 	var a = document.createElement("span");
+	a.className = "MemoPopoverSpan";
   a.setAttribute('tabindex', "0");
   a.setAttribute('data-container', "body");
   a.setAttribute('data-template', "<div class='MemoPopover' role='tooltip'><div class='arrow'></div><div class='popover-content'></div></div>");
@@ -47,14 +48,14 @@ function showPopoverTranslation(translation){
   wordElem.addRange(range);
 
   setTimeout(function(){
-    $('[data-toggle="popover"]').popover("show");
+    $('.MemoPopoverSpan').popover("show");
    }, 50);
 }
 
 
 // popover disabling (because focus doesn't work after "show")
 $(document).on('click', function(e) {
-  $('[data-toggle="popover"],[data-original-title]').each(function() {
+  $('.MemoPopoverSpan').each(function() {
     //the 'is' for buttons that trigger popups
     //the 'has' for icons within a button that triggers a popup
     if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
