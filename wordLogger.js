@@ -35,17 +35,25 @@ function showPopoverTranslation(translation){
 	a.className = "MemoPopoverSpan";
   a.setAttribute('tabindex', "0");
   a.setAttribute('data-container', "body");
-  a.setAttribute('data-template', "<div class='MemoPopover' role='tooltip'><div class='arrow'></div><div class='popover-content'></div></div>");
+  a.setAttribute('data-template', memoPopoverTemplate);
   a.setAttribute('data-toggle', "popover");
   a.setAttribute('data-placement', "auto top");
   a.setAttribute('data-trigger', "focus");
-  a.setAttribute('data-content', translation);
+  a.setAttribute('data-html', "true");
+  a.setAttribute('data-content', "<b>" + translation + "</b>");
 
 	var wordElem = window.getSelection();
   var range = wordElem.getRangeAt(0).cloneRange();
   range.surroundContents(a);
   wordElem.removeAllRanges();
   wordElem.addRange(range);
+
+  $('.MemoPopoverSpan').popover().on('shown.bs.popover', function (eventShown) {
+	    var $popup = $('#' + $(eventShown.target).attr('aria-describedby'));
+	    $popup.find('button.memo-popover-add').click(function (e) {
+	        memoPopoverAddClick();
+	    });
+		});
 
   setTimeout(function(){
     $('.MemoPopoverSpan').popover("show");
@@ -60,7 +68,7 @@ $(document).on('click', function(e) {
     //the 'has' for icons within a button that triggers a popup
     if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
       $(this).popover('hide').data('bs.popover').inState.click = false // fix for BS 3.3.6
-      $(this).contents().unwrap();
+	  	$(this).contents().unwrap();
     }
 
   });
