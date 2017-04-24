@@ -4,6 +4,19 @@ memoPopoverTemplate = ["<div class='MemoPopover' role='tooltip'>",
 											 "<button type='button' class='memo-popover-add'>+</button>",
 											 "</div>"].join('');
 
-function memoPopoverAddClick(){
-	console.log("kkkkkkkeeeeekKkk");
+function memoPopoverAddClick(word, translation){
+	// it should be executed on button 'add'
+	let card = new Card(word, translation);
+
+	let scheduler = new DebugCardScheduler();
+	scheduler.schedule(card);
+
+	console.log(card);
+
+	StorageManager.addCard(card, function(isAdded){
+		if (isAdded){
+			//notify background for adding new alarm
+  		chrome.runtime.sendMessage(null, card);
+  	}
+	});
 }

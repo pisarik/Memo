@@ -22,8 +22,8 @@
   	{
   		"matches": ["*://*/*"],
   		"js": ["3rdparty/jquery-3.2.1.min.js", "3rdparty/bootstrap-3.3.7.min.js", 
-  			"popover/template.js",
-  			"wordLogger.js", "card.js", "translater.js", "storageManager.js",
+  			"storageManager.js", "card.js", "popover/template.js",
+  			"wordLogger.js",  "translater.js", 
   			"utilities.js", "cardScheduler.js"			 
   			],
   		"css": ["popover/memoPopover.css"],

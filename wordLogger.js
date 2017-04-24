@@ -1,27 +1,12 @@
 document.body.addEventListener('dblclick', function(){
-	word = window.getSelection().toString();
+	let word = window.getSelection().toString();
 
 	if (word.length > 1){
 		console.log(word);
 		console.log(word.length);
 
 		let callback = function(translation){
-			showPopoverTranslation(translation);
-
-			// it should be executed on button 'add'
-			let card = new Card(word, translation);
-
-			let scheduler = new DebugCardScheduler();
-			scheduler.schedule(card);
-
-			console.log(card);
-
-			StorageManager.addCard(card, function(isAdded){
-				if (isAdded){
-					//notify background for adding new alarm
-		  		chrome.runtime.sendMessage(null, card);
-		  	}
-	  	});
+			showPopoverTranslation(word, translation);
 		}
 
 	  let translater = new GoogleTranslater();
@@ -30,7 +15,7 @@ document.body.addEventListener('dblclick', function(){
 
 });
 
-function showPopoverTranslation(translation){
+function showPopoverTranslation(word, translation){
 	var a = document.createElement("span");
 	a.className = "MemoPopoverSpan";
   a.setAttribute('tabindex', "0");
@@ -51,7 +36,7 @@ function showPopoverTranslation(translation){
   $('.MemoPopoverSpan').popover().on('shown.bs.popover', function (eventShown) {
 	    var $popup = $('#' + $(eventShown.target).attr('aria-describedby'));
 	    $popup.find('button.memo-popover-add').click(function (e) {
-	        memoPopoverAddClick();
+	        memoPopoverAddClick(word, translation);
 	    });
 		});
 
