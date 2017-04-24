@@ -4,14 +4,17 @@ document.body.addEventListener('dblclick', function(){
 	if (word.length > 1){
 		console.log(word);
 		console.log(word.length);
-		
+
 		let callback = function(translation){
 			showPopoverTranslation(translation);
 
 			// it should be executed on button 'add'
 			let card = new Card(word, translation);
 
-			console.log(card + '');
+			let scheduler = new DebugCardScheduler();
+			scheduler.schedule(card);
+
+			console.log(card);
 
 			StorageManager.addCard(card, function(isAdded){
 				if (isAdded){

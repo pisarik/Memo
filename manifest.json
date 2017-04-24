@@ -15,7 +15,7 @@
  //  },
 
  	"background":{
- 		"scripts": ["background.js"]
+ 		"scripts": ["background.js", "storageManager.js", "cardScheduler.js"]
  	},
 
   "content_scripts": [
@@ -23,7 +23,7 @@
   		"matches": ["*://*/*"],
   		"js": ["3rdparty/jquery-3.2.1.min.js", "3rdparty/bootstrap-3.3.7.min.js", 
   			"wordLogger.js", "card.js", "translater.js", "storageManager.js",
-  			"utilities.js"  			 
+  			"utilities.js", "cardScheduler.js"			 
   			],
   		"css": ["popover/memoPopover.css"],
   		"run_at": "document_end"
@@ -32,6 +32,7 @@
 
   "permissions": [
   	"storage",
+  	"alarms",
   	"notifications",
     "https://ajax.googleapis.com/"
   ]
