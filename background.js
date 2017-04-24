@@ -13,13 +13,10 @@ chrome.alarms.onAlarm.addListener(function(alarm){
 	let id = alarm.name;
 	
 	StorageManager.getCardById(id, function(card){
-
-		let notificator = new SimpleNotificator();
-		notificator.notify(card);
+		memoNotificator.notify(card);
 		card.showCount++;
 
-		let scheduler = new DumbCardScheduler();
-		scheduler.schedule(card);
+		memoScheduler.schedule(card);
 
 		StorageManager.updateCardById(id, card);
 

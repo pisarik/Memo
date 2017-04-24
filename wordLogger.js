@@ -8,8 +8,7 @@ document.body.addEventListener('dblclick', function(event){
 				showPopoverTranslation(word, translation);
 			}
 
-		  let translater = new GoogleTranslater();
-		  translater.translate(word, "en", "ru", callback);
+		  memoTranslater.translate(word, "en", "ru", callback);
 		}
 	}
 });
@@ -34,11 +33,11 @@ function showPopoverTranslation(word, translation){
   wordElem.addRange(range);
 
   $('.MemoPopoverSpan').popover().on('shown.bs.popover', function (eventShown) {
-	    let $popup = $('#' + $(eventShown.target).attr('aria-describedby'));
-	    $popup.find('button.memo-popover-add').click(function (e) {
-	        memoPopoverAddClick(word, translation);
-	    });
-		});
+    let $popup = $('#' + $(eventShown.target).attr('aria-describedby'));
+    $popup.find('button.memo-popover-add').click(function (e) {
+        memoPopoverAddClick(word, translation);
+    });
+	});
 
   setTimeout(function(){
     $('.MemoPopoverSpan').popover("show");

@@ -8,11 +8,10 @@ function memoPopoverAddClick(word, translation){
 	// it should be executed on button 'add'
 	let card = new Card(word, translation);
 
-	let scheduler = new DebugCardScheduler();
-	scheduler.schedule(card);
+	memoScheduler.schedule(card);
 
-	console.log(card);
-
+	//should be added here, because it preserves methods in object
+	//but sendMessage not!!! 
 	StorageManager.addCard(card, function(isAdded){
 		if (isAdded){
 			//notify background for adding new alarm
