@@ -1,7 +1,7 @@
 class CardScheduler{
 	constructor(){
 		if (this.schedule === undefined) {
-      throw new TypeError("Must override translate");
+      throw new TypeError("Must override schedule");
     }
 	}
 }
