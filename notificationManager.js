@@ -20,9 +20,9 @@ class SimpleNotificator extends NotificationManager{
 		let isTimeToTest = (card.showCount + 1) % 3 == 0; // on third show
 		let isTimeToReverse = (card.showCount + 1) % 2 == 0; // on second show
 		if (isTimeToTest){
-			options.title = 'Test: do you know translation?';
+			options.title = 'Do you know the translation?';
 			options.message = isTimeToReverse? card.translation : card.word;
-			options.buttons = [{title: "Помню"}, {title: "Не уверен"}];
+			options.buttons = [{title: "I know"}, {title: "Not sure"}];
 			options.requireInteraction = true;
 		}
 		else{
