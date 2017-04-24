@@ -1,6 +1,6 @@
 document.body.addEventListener('dblclick', function(event){
 	//show popover everywhere except input
-	if (event.target.nodeName !== "INPUT"){
+	if (isStaticPageText(event.target)){
 		let word = window.getSelection().toString();
 
 		if (word.length > 1){

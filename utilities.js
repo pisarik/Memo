@@ -9,6 +9,10 @@ function isCardExist(cards, card){
 	return false;
 }
 
+function isStaticPageText(node){
+	return node.nodeName !== "INPUT" && node.nodeName !== "TEXTAREA";
+}
+
 function guid() {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
