@@ -17,17 +17,5 @@ class Card{
 
 	toString(){
 		return "id: " + this.id + "\nword: " + this.word + "\ntranslation: " + this.translation;
-	}
-
-	show(){
-		let options = {
-		  type: "basic",
-		  title: "Did you know, that...",
-		  message: card.word + " - " + card.translation,
-		  iconUrl: "icon_48.png"
-		};
-
-		chrome.notifications.create(null, options);
-	}
-	
+	}	
 }
