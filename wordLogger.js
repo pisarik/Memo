@@ -4,9 +4,6 @@ document.body.addEventListener('dblclick', function(event){
 		let word = window.getSelection().toString();
 
 		if (word.length > 1){
-			console.log(word);
-			console.log(word.length);
-
 			let callback = function(translation){
 				showPopoverTranslation(word, translation);
 			}

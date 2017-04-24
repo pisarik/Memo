@@ -10,21 +10,15 @@ chrome.runtime.onMessage.addListener(function(card, sender, sendResponse) {
 });
 
 chrome.alarms.onAlarm.addListener(function(alarm){
-	console.log("Alarm!!");
 	let id = alarm.name;
 	
 	StorageManager.getCardById(id, function(card){
 
-		let options = {
-		  type: "basic",
-		  title: "Did you know, that...",
-		  message: card.word + " - " + card.translation,
-		  iconUrl: "icon_48.png"
-		};
+		let notificator = new SimpleNotificator();
+		notificator.notify(card);
+		card.showCount++;
 
-		chrome.notifications.create(null, options);
-
-		let scheduler = new DebugCardScheduler();
+		let scheduler = new DumbCardScheduler();
 		scheduler.schedule(card);
 
 		StorageManager.updateCardById(id, card);

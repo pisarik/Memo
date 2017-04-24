@@ -7,7 +7,8 @@ class Card{
 
 		// this members will settled, when card firstly snapped to alarm
 		this.showDate = null; // in ms from epoch (as Date.getTime())
-		this.period = null; // last period in seconds
+		this.showCount = 0; // count of card shows (also used as level of knowledge of the card)
+		this.period = 30; // minimal time period for show card
 	}
 
 	equalsById(card){

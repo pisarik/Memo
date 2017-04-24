@@ -15,7 +15,7 @@
  //  },
 
  	"background":{
- 		"scripts": ["background.js", "storageManager.js", "cardScheduler.js"]
+ 		"scripts": ["background.js", "storageManager.js", "notificationManager.js", "cardScheduler.js"]
  	},
 
   "content_scripts": [

@@ -14,22 +14,12 @@ class DumbCardScheduler extends CardScheduler{
 
 
 	schedule(card){
-		if (card.showDate === null || card.period === null){
 			card.period = 30;
 
 			let newDate = new Date();
-			newDate.setSeconds(newDate.getSeconds() + card.period);
+			newDate.setSeconds(newDate.getSeconds() + card.period*(2**card.showCount));
 			
 			card.showDate = newDate.getTime();
-		}
-		else{
-			card.period *= 2;
-
-			let newDate = new Date();
-			newDate.setSeconds(newDate.getSeconds() + card.period);
-
-			card.showDate = newDate.getTime();
-		}
 	}
 }
 
