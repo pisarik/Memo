@@ -9,3 +9,6 @@ Memo is a chrome extension for efficient memorizing english words while you surf
 
 ## Pass simple tests and improve your vocabulary!
 ![Alt text](/../screenshots/test.png?raw=true "Test notification")
+
+## Track your progress and be confident
+![Alt text](/../screenshots/progress.png?raw=true "Table of words and progress")
