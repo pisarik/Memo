@@ -10,7 +10,7 @@
 	//"default_locale": "ru", need for internationalization, while only ru
 
 	"browser_action": {
-    "default_icon": "popup_32.png",
+    "default_icon": "images/popup_32.png",
     "default_title": "Memo",
     "default_popup": "popup/template.html"
   },

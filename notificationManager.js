@@ -14,7 +14,7 @@ class SimpleNotificator extends NotificationManager{
 	notify(card){
 		let options = {
 			type: "basic",
-		  iconUrl: "icon_48.png"
+		  iconUrl: "images/icon_48.png"
 		};
 
 		let isTimeToTest = (card.showCount + 1) % 3 == 0; // on third show
@@ -59,7 +59,7 @@ chrome.notifications.onButtonClicked.addListener(function (id, buttonIndex){
 		//show right answer
 		let options = {
 				type: "basic",
-			  iconUrl: "icon_48.png",
+			  iconUrl: "images/icon_48.png",
 			  title: "Right answer",
 			  message: card.word + " - " + card.translation,
 			  requireInteraction: false
