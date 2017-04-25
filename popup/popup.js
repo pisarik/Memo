@@ -1,6 +1,22 @@
-let background = chrome.extension.getBackgroundPage()
+// When the popup HTML has loaded
+window.addEventListener('load', function(evt) {
+	let table = createTable();
+  
+  chrome.storage.local.get({'cards': []}, function(result){
+		let cards = result.cards;
 
-let table = createTable();
+		let tbody = document.createElement('tbody');
+		for (let i = 0; i < cards.length; i++){	
+			tbody.appendChild(createRow(cards[i].word, cards[i].translation,
+																	cards[i].showDate, cards[i].showCount));
+		}
+
+		table.appendChild(tbody);
+		document.body.appendChild(table);
+	});
+
+	document.getElementById('addCard').addEventListener('submit', addCard);
+});
 
 function createTable(){
 	let table = document.createElement('table');
@@ -84,15 +100,30 @@ function createRow(word, translation, showDate, showCount){
 	return row;
 }
 
-chrome.storage.local.get({'cards': []}, function(result){
-	let cards = result.cards;
+function addCard(){
+	// Cancel the form submit
+  event.preventDefault();
 
-	let tbody = document.createElement('tbody');
-	for (let i = 0; i < cards.length; i++){	
-		tbody.appendChild(createRow(cards[i].word, cards[i].translation,
-																cards[i].showDate, cards[i].showCount));
+  let word = document.addCard.word.value;
+  let translation = document.addCard.translation.value;
+
+  if (word !== '' && translation != ''){
+	  let card = new Card(word, translation);
+
+	  memoScheduler.schedule(card);
+
+	  //should be added here, because it preserves methods in object
+		//but sendMessage not!!! 
+		StorageManager.addCard(card, function(isAdded){
+			if (isAdded){
+				//notify background for adding new alarm
+	  		chrome.runtime.sendMessage(null, card);
+
+	  		//update table
+				document.getElementsByTagName('table')[0]
+								.appendChild(createRow(card.word, card.translation,
+																			 card.showDate, card.showCount));
+	  	}
+		});	
 	}
-
-	table.appendChild(tbody);
-	document.body.appendChild(table);
-});
+}

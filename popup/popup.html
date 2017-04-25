@@ -8,6 +8,12 @@
   <head>
     <title>Memo</title>
     <link rel="stylesheet" type="text/css" href="popup.css">
+    <script src="popup.js"></script>
+    <script src="../card.js"></script>
+    <script src="../storageManager.js"></script>
+    <script src="../cardScheduler.js"></script>
+    <script src="../commonDefs.js"></script>
+    <script src="../utilities.js"></script>
     <style>
     </style>
 
@@ -20,6 +26,10 @@
     <!--script src="../3rdparty/jquery-3.2.1.min.js"></script-->
   </head>
   <body>
-  	<script src="popup.js"></script>
+    <form id="addCard" name="addCard">
+      <input type="text" name="word" placeholder="Word" id="addCard">
+      <input type="text" name="translation" placeholder="Translation" id="addCard">
+      <button type="submit" id="addCard" alt="Add card">+</button>
+    </form>
   </body>
 </html>

@@ -1,4 +1,5 @@
 body{
+  /*background-color: #F5F6A8;*/
 	margin: auto;
 }
 
@@ -9,10 +10,6 @@ table {
   border-bottom: 4px solid #ffee58;
 }
 
-table thead th, table tbody td{
-	border: 0px;
-}
-
 table tr:hover {
   background: #fff9c4;
 }
@@ -21,7 +18,6 @@ table tr:hover td {
 }
 table th, table td {
   color: #757575;
-  border: 1px solid #eee;
   padding: 12px 35px;
   border-collapse: collapse;
 }
@@ -65,4 +61,34 @@ progress[value]::-webkit-progress-value{
   border-bottom-left-radius: 100px; 
 
 	box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+}
+
+/*** ADD CARD ***/
+
+form#addCard{
+  display: inline-flex;
+  width: 100%;
+}
+
+input#addCard{
+  margin: 5px;
+  width: 100%;
+}
+
+button#addCard {
+  font-family: Arial;
+  font-size: 20px;
+  color: #000000;
+
+  background: #ffee58;
+  border-radius: 100%;
+  border: solid #9EAC83 0px;
+  
+  display: table-column;
+  margin: 5px;
+  padding: 4px 9px 4px 9px;
+}
+
+button#addCard:hover {
+  background: #fdd835;
 }
