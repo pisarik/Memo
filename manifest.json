@@ -12,7 +12,7 @@
 	"browser_action": {
     "default_icon": "images/popup_32.png",
     "default_title": "Memo",
-    "default_popup": "popup/template.html"
+    "default_popup": "popup/popup.html"
   },
 
  	"background":{
