@@ -90,7 +90,7 @@ chrome.storage.local.get({'cards': []}, function(result){
 	let tbody = document.createElement('tbody');
 	for (let i = 0; i < cards.length; i++){	
 		tbody.appendChild(createRow(cards[i].word, cards[i].translation,
-																cards[i].showDate, cards[i].showCount);
+																cards[i].showDate, cards[i].showCount));
 	}
 
 	table.appendChild(tbody);
