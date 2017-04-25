@@ -9,10 +9,11 @@
 	
 	//"default_locale": "ru", need for internationalization, while only ru
 
-	// "browser_action": {
- //    "default_icon": "icon_48.png",
- //    "default_popup": "popup.html"
- //  },
+	"browser_action": {
+    "default_icon": "popup_32.png",
+    "default_title": "Memo",
+    "default_popup": "popup/template.html"
+  },
 
  	"background":{
  		"scripts": ["background.js", "storageManager.js", "notificationManager.js", "cardScheduler.js", 
