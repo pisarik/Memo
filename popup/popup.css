@@ -1,0 +1,68 @@
+body{
+	margin: auto;
+}
+
+table {
+  font-family: 'Arial';
+  border-collapse: collapse;
+  border: 1px solid #eee;
+  border-bottom: 4px solid #ffee58;
+}
+
+table thead th, table tbody td{
+	border: 0px;
+}
+
+table tr:hover {
+  background: #fff9c4;
+}
+table tr:hover td {
+  color: #555;
+}
+table th, table td {
+  color: #757575;
+  border: 1px solid #eee;
+  padding: 12px 35px;
+  border-collapse: collapse;
+}
+table th {
+  background: #ffee58;
+  color: #000;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+table th.last {
+  border-right: none;
+}
+
+/*** PROGRESS BAR ***/
+progress[value]{
+  background-color: #C0C0C0;
+  border-radius:100px;
+
+  transform: rotateY(180deg);
+}
+
+progress[value]::-webkit-progress-bar {
+    background-image:
+	   -webkit-linear-gradient(-45deg, 
+	                           transparent 33%, rgba(0, 0, 0, .1) 33%, 
+	                           rgba(0,0, 0, .1) 66%, transparent 66%),
+	   -webkit-linear-gradient(top, 
+	                           rgba(255, 255, 255, .25), 
+	                           rgba(0, 0, 0, .25)),
+	   -webkit-linear-gradient(left, #4caf50, rgb(255, 255, 0), #f44336);
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+
+    border-radius: 100px;
+}
+
+progress[value]::-webkit-progress-value{
+	background-color: whiteSmoke;
+	
+	border-top-left-radius: 100px; 
+  border-bottom-left-radius: 100px; 
+
+	box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+}
