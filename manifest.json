@@ -15,6 +15,13 @@
     "default_popup": "popup/popup.html"
   },
 
+  "options_ui": {
+    // Required.
+    "page": "options/options.html",
+    // Recommended.
+    "chrome_style": true
+  },
+
  	"background":{
  		"scripts": ["storageManager.js", "notificationManager.js", "cardScheduler.js", 
  								"commonDefs.js", "background.js", "utilities.js"]
