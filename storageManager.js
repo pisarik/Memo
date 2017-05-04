@@ -6,6 +6,14 @@ class StorageManager{
 		return chrome.storage.local;
 	}
 
+	static CARDS(callback){
+ 		StorageManager.STORAGE.get({'cards': []}, function(result){
+ 			let cards = result.cards;
+
+ 			callback(cards);
+ 		});
+ 	}
+
 	// async, therefore calls callback = function(card)
 	static getCardById(id, callback){
 		StorageManager.STORAGE.get({'cards': []}, function(result){
