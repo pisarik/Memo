@@ -1,3 +1,7 @@
+function createCardAlarm(card){
+	chrome.alarms.create(card.id, { "when": card.showDate });
+}
+
 chrome.runtime.onMessage.addListener(function(card, sender, sendResponse) {
 
 	/* card is only json wrap of members without methods,
@@ -6,7 +10,7 @@ chrome.runtime.onMessage.addListener(function(card, sender, sendResponse) {
 	 * maybe construct sort of - new Card(card) and then use .show.
 	*/
 
-	chrome.alarms.create(card.id, { "when": card.showDate });
+	createCardAlarm(card);
 });
 
 chrome.alarms.onAlarm.addListener(function(alarm){
@@ -18,15 +22,22 @@ chrome.alarms.onAlarm.addListener(function(alarm){
 
 		memoScheduler.schedule(card);
 
+		createCardAlarm(card);
 		StorageManager.updateCardById(id, card);
-
-		chrome.alarms.create(card.id, { "when": card.showDate });
 	});
 
 });
 
 function updateCardAlarms(){
-	StorageManager.CARDS(memoScheduler.rescheduleMissed);
+	StorageManager.CARDS(function(cards){
+		let missed_idxes = memoScheduler.rescheduleMissed(cards);
+
+		for (let i = 0; i < missed_idxes.length; i++){
+			createCardAlarm(cards[missed_idxes[i]]);
+		}
+
+		StorageManager.STORAGE.set({'cards': cards});
+	});
 }
 
-chrome.management.onEnabled.addListener( updateCardAlarms );
+updateCardAlarms();

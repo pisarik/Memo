@@ -16,8 +16,8 @@
   },
 
  	"background":{
- 		"scripts": ["background.js", "storageManager.js", "notificationManager.js", "cardScheduler.js", 
- 								"commonDefs.js", "utilities.js"]
+ 		"scripts": ["storageManager.js", "notificationManager.js", "cardScheduler.js", 
+ 								"commonDefs.js", "background.js", "utilities.js"]
  	},
 
   "content_scripts": [
@@ -37,7 +37,6 @@
   	"storage",
   	"alarms",
   	"notifications",
-  	"management",
     "https://ajax.googleapis.com/"
   ]
 }

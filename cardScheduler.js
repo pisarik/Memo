@@ -3,13 +3,14 @@ class CardScheduler{
 		if (this.schedule === undefined) {
       throw new TypeError("Must override schedule");
     }
-	}
+  }
 
 	scheduleFor(card, date){
 		card.showDate = date.getTime();
 	}
 
 	rescheduleMissed(cards){
+		let missed_idxes = []
 		let now = new Date();
 		let newDate = new Date();
 		const MINUTES_INTERVAL = 5;
@@ -18,12 +19,13 @@ class CardScheduler{
 			if (new Date(cards[i].showDate) < now){
 				newDate.setMinutes(newDate.getMinutes() + MINUTES_INTERVAL);
 
-				memoScheduler.scheduleFor(cards[i], newDate);
-				console.log("Reschedule: " + cards[i] + " to " + newDate);
+				this.scheduleFor(cards[i], newDate);
 
-				StorageManager.updateCardById(cards[i].id, cards[i]);
+				missed_idxes.push(i);
 			}
 		}
+
+		return missed_idxes;
 	}
 }
 
