@@ -4,6 +4,27 @@ class CardScheduler{
       throw new TypeError("Must override schedule");
     }
 	}
+
+	scheduleFor(card, date){
+		card.showDate = date.getTime();
+	}
+
+	rescheduleMissed(cards){
+		let now = new Date();
+		let newDate = new Date();
+		const MINUTES_INTERVAL = 5;
+
+		for (let i = 0; i < cards.length; i++){
+			if (new Date(cards[i].showDate) < now){
+				newDate.setMinutes(newDate.getMinutes() + MINUTES_INTERVAL);
+
+				memoScheduler.scheduleFor(cards[i], newDate);
+				console.log("Reschedule: " + cards[i] + " to " + newDate);
+
+				StorageManager.updateCardById(cards[i].id, cards[i]);
+			}
+		}
+	}
 }
 
 class DumbCardScheduler extends CardScheduler{
@@ -19,7 +40,7 @@ class DumbCardScheduler extends CardScheduler{
 			let newDate = new Date();
 			newDate.setSeconds(newDate.getSeconds() + card.period*(2**card.showCount));
 			
-			card.showDate = newDate.getTime();
+			super.scheduleFor(card, newDate);
 	}
 }
 
@@ -36,6 +57,6 @@ class DebugCardScheduler extends CardScheduler{
 		let newDate = new Date();
 		newDate.setSeconds(newDate.getSeconds() + card.period);
 		
-		card.showDate = newDate.getTime();
+		super.scheduleFor(card, newDate);
 	}
 }

@@ -37,6 +37,7 @@
   	"storage",
   	"alarms",
   	"notifications",
+  	"management",
     "https://ajax.googleapis.com/"
   ]
 }

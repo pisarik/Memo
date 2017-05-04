@@ -24,3 +24,9 @@ chrome.alarms.onAlarm.addListener(function(alarm){
 	});
 
 });
+
+function updateCardAlarms(){
+	StorageManager.CARDS(memoScheduler.rescheduleMissed);
+}
+
+chrome.management.onEnabled.addListener( updateCardAlarms );
