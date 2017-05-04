@@ -53,6 +53,14 @@ function createTable(){
 	return table
 }
 
+function positiveZeroPad(num, size) {
+    let s = num+"";
+    while (s.length < size) 
+    	s = "0" + s;
+
+    return s;
+}
+
 function formatDate(date) {
   let monthNames = [
     "Jan", "Feb", "Mar",
@@ -68,7 +76,9 @@ function formatDate(date) {
   let hours = date.getHours();
   let mins = date.getMinutes();
 
-  return hours + ':' + mins + '\n' + day + ' ' + monthNames[monthIndex];
+  return [positiveZeroPad(hours, 2) + ':' + positiveZeroPad(mins, 2), 
+  				day + ' ' + monthNames[monthIndex]
+  ];
 }
 
 function createRow(word, translation, showDate, showCount){
@@ -84,7 +94,12 @@ function createRow(word, translation, showDate, showCount){
 
 		let showDateCol = document.createElement('td');
 			showDateCol.setAttribute("align", "center");
-		showDateCol.appendChild(document.createTextNode(formatDate(new Date(showDate))));		
+		let lines = formatDate(new Date(showDate));
+		for (let i = 0; i < lines.length - 1; i++){
+			showDateCol.appendChild(document.createTextNode(lines[i]));
+			showDateCol.appendChild(document.createElement('br'));
+		}
+		showDateCol.appendChild(document.createTextNode(lines[lines.length - 1]));		
 
 		let progressCol = document.createElement('td');
 			let progress = document.createElement('progress');
