@@ -53,34 +53,6 @@ function createTable(){
 	return table
 }
 
-function positiveZeroPad(num, size) {
-    let s = num+"";
-    while (s.length < size) 
-    	s = "0" + s;
-
-    return s;
-}
-
-function formatDate(date) {
-  let monthNames = [
-    "Jan", "Feb", "Mar",
-    "Apr", "May", "Jun", "Jul",
-    "Aug", "Sep", "Oct",
-    "Nov", "Dec"
-  ];
-
-  let day = date.getDate();
-  let monthIndex = date.getMonth();
-  let year = date.getFullYear();
-
-  let hours = date.getHours();
-  let mins = date.getMinutes();
-
-  return [positiveZeroPad(hours, 2) + ':' + positiveZeroPad(mins, 2), 
-  				day + ' ' + monthNames[monthIndex]
-  ];
-}
-
 function createRow(word, translation, showDate, showCount){
 	let row = document.createElement('tr');
 		
