@@ -39,6 +39,7 @@
   	"alarms",
   	"notifications",
   	"activeTab",
+  	"*://*/",
     "https://ajax.googleapis.com/"
   ]
 }
