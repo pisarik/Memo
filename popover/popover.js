@@ -8,6 +8,7 @@ function memoPopoverAddClick(word, translation){
 	// it should be executed on button 'add'
 	let card = new Card(word, translation);
 
+	memoProgresser.initCardProgress(card);
 	memoScheduler.schedule(card);
 
 	//should be added here, because it preserves methods in object

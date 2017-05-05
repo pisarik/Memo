@@ -37,10 +37,10 @@ class DumbCardScheduler extends CardScheduler{
 
 
 	schedule(card){
-			card.period = 30;
+			card.period = 60;
 
 			let newDate = new Date();
-			newDate.setSeconds(newDate.getSeconds() + card.period*(2**card.showCount));
+			newDate.setSeconds(newDate.getSeconds() + card.period*(2**(card.showNumber - 1)));
 			
 			super.scheduleFor(card, newDate);
 	}

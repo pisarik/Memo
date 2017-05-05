@@ -35,7 +35,12 @@ chrome.alarms.onAlarm.addListener(function(alarm){
 	
 	StorageManager.getCardById(id, function(card){
 		memoNotificator.notify(card);
-		card.showCount++;
+
+		/* in case of test, we assume, that test is failed.
+		 * if it's not, then in test result listener (notificationManager)
+		 * we update card and alarm with proper progress.
+		 */
+		memoProgresser.cardShowed(card);
 
 		memoScheduler.schedule(card);
 
@@ -53,6 +58,7 @@ function loadPopover(){
 	chrome.tabs.executeScript(null, { file: "popover/popover.js"});
 	chrome.tabs.executeScript(null, { file: "wordLogger.js"});
 	chrome.tabs.executeScript(null, { file: "translater.js"});
+	chrome.tabs.executeScript(null, { file: "progressManager.js"});
 	chrome.tabs.executeScript(null, { file: "cardScheduler.js"});
 	chrome.tabs.executeScript(null, { file: "commonDefs.js"});
 	chrome.tabs.executeScript(null, { file: "utilities.js"});

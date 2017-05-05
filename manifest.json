@@ -22,7 +22,7 @@
   },
 
  	"background":{
- 		"scripts": ["storageManager.js", "notificationManager.js", "cardScheduler.js", 
+ 		"scripts": ["storageManager.js", "progressManager.js", "notificationManager.js", "cardScheduler.js", 
  								"commonDefs.js", "background.js", "utilities.js"]
  	},
 

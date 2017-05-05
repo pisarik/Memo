@@ -9,3 +9,7 @@ if (typeof CardScheduler !== 'undefined'){
 if (typeof Translater !== 'undefined'){
 	var memoTranslater = new GoogleTranslater();
 }
+
+if (typeof ProgressManager !== 'undefined'){
+	var memoProgresser = new TripleShowProgressManager();
+}
