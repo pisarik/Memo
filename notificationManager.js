@@ -17,15 +17,14 @@ class SimpleNotificator extends NotificationManager{
 		  iconUrl: "images/icon_48.png"
 		};
 
-		let isTimeToTest = (card.showCount + 1) % 3 == 0; // on third show
-		let isTimeToReverse = (card.showCount + 1) % 2 == 0; // on second show
-		if (isTimeToTest){
+		let isTimeToReverse = card.showNumber % 2 == 0;
+		if (memoProgresser.isTimeToTest(card)){
 			options.title = 'Do you know the translation?';
 			options.message = isTimeToReverse? card.translation : card.word;
 			options.buttons = [{title: "I know"}, {title: "Not sure"}];
 			options.requireInteraction = true;
 		}
-		else{
+		else{ //is time for just show
 			options.title = 'Did you know, that...';
 			options.message = isTimeToReverse? card.translation + " - " + card.word 
 																				:card.word + " - " + card.translation;
@@ -35,20 +34,18 @@ class SimpleNotificator extends NotificationManager{
 	}
 }
 
-chrome.notifications.onButtonClicked.addListener(function (id, buttonIndex){
+function testResultListener(id, buttonIndex){
 	StorageManager.getCardById(id, function(card){
-		let shouldRepeatCard = buttonIndex == 1;
-		if (shouldRepeatCard){
-			card.showCount = Math.max(card.showCount - 3, 0);
+		let isGood = buttonIndex == 0;
 
-			let scheduler = new DumbCardScheduler();
-			scheduler.schedule(card);
+		if (isGood){
+			memoProgresser.cardTested(card, isGood);
+			memoScheduler.schedule(card);
 
 			//also we should update alarm
 			chrome.alarms.clear(id);
 			chrome.alarms.create(id, { "when": card.showDate})
 
-			//and card
 			StorageManager.updateCardById(id, card);
 		}
 	
@@ -66,4 +63,10 @@ chrome.notifications.onButtonClicked.addListener(function (id, buttonIndex){
 			};
 		chrome.notifications.create(id, options);
 	});
+}
+
+chrome.notifications.onButtonClicked.addListener(testResultListener);
+
+chrome.notifications.onClosed.addListener(function(id, byUser){
+	console.log("CLOSED " + byUser);
 });

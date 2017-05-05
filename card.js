@@ -5,10 +5,18 @@ class Card{
 		this.word = word;
 		this.translation = translation;
 
-		// this members will settled, when card firstly snapped to alarm
+		// this members managed by CardScheduler
 		this.showDate = null; // in ms from epoch (as Date.getTime())
-		this.showCount = 0; // count of card shows (also used as level of knowledge of the card)
-		this.period = 30; // minimal time period for show card
+		this.period 	= null; // minimal time period in sec for show card
+
+		/* this members managed by ProgressManager
+		 * checkpoint - is the number of show, on which test will be conducted
+		 */
+		this.showNumber = 1;  // current number of card appearances (also used as level of knowledge of the card)
+		this.checkpoint = 0;  // checkpoint for progress
+		this.nextCheck  = 0;  // next checkpoint for progress
+
+
 	}
 
 	equalsById(card){

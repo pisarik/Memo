@@ -8,7 +8,7 @@ window.addEventListener('load', function(evt) {
 		let tbody = document.createElement('tbody');
 		for (let i = 0; i < cards.length; i++){	
 			tbody.appendChild(createRow(cards[i].word, cards[i].translation,
-																	cards[i].showDate, cards[i].showCount));
+																	cards[i].showDate, cards[i].showNumber));
 		}
 
 		table.appendChild(tbody);
@@ -53,7 +53,7 @@ function createTable(){
 	return table
 }
 
-function createRow(word, translation, showDate, showCount){
+function createRow(word, translation, showDate, showNumber){
 	let row = document.createElement('tr');
 		
 		let wordCol = document.createElement('td');
@@ -75,8 +75,8 @@ function createRow(word, translation, showDate, showCount){
 
 		let progressCol = document.createElement('td');
 			let progress = document.createElement('progress');
-			progress.setAttribute('value', 20 - showCount);
-			progress.setAttribute('max', "20");
+			progress.setAttribute('value', 21 - showNumber);
+			progress.setAttribute('max', "21");
 		progressCol.appendChild(progress);
 
 	row.appendChild(wordCol);
@@ -97,6 +97,7 @@ function addCard(){
   if (word !== '' && translation != ''){
 	  let card = new Card(word, translation);
 
+	  memoProgresser.initCardProgress(card);
 	  memoScheduler.schedule(card);
 
 	  //should be added here, because it preserves methods in object
@@ -104,12 +105,15 @@ function addCard(){
 		StorageManager.addCard(card, function(isAdded){
 			if (isAdded){
 				//notify background for adding new alarm
-	  		chrome.runtime.sendMessage(null, card);
+				let msg = { type: "start_handle_card",
+										card: card
+									};
+	  		chrome.runtime.sendMessage(null, msg);
 
 	  		//update table
 				document.getElementsByTagName('table')[0]
 								.appendChild(createRow(card.word, card.translation,
-																			 card.showDate, card.showCount));
+																			 card.showDate, card.showNumber));
 	  	}
 		});	
 	}
