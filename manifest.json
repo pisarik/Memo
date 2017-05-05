@@ -5,7 +5,7 @@
 	"version_name": "beta",
 	
 	"name": "Memo",
-	"description": "Расширение для эффективного запоминания английских слов, пока Вы работаете или бороздите веб! По методике интервальных повторений.",//"Memo is a chrome extension for efficient memorizing english words while you surfing net. Based on spaced repetitions.",
+	"description": "Расширение для эффективного запоминания английских слов по методике интервальных повторений.",//"Memo is a chrome extension for efficient memorizing english words while you surfing net. Based on spaced repetitions.",
   "icons": {  "48": "images/icon_48.png" },
 
 	//"default_locale": "ru", need for internationalization, while only ru
