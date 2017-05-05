@@ -14,7 +14,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
 	*/
 
 	if (msg.type === "start_handle_card"){
-		createCardAlarm(card);
+		createCardAlarm(msg.card);
 	}
 	else if (msg.type === "load_popover"){
 		chrome.storage.sync.get({showPopover: true}, function(result){

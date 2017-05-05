@@ -104,7 +104,10 @@ function addCard(){
 		StorageManager.addCard(card, function(isAdded){
 			if (isAdded){
 				//notify background for adding new alarm
-	  		chrome.runtime.sendMessage(null, card);
+				let msg = { type: "start_handle_card",
+										card: card
+									};
+	  		chrome.runtime.sendMessage(null, msg);
 
 	  		//update table
 				document.getElementsByTagName('table')[0]
