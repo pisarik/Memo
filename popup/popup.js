@@ -2,12 +2,11 @@
 window.addEventListener('load', function(evt) {
 	let table = createTable();
   
-  chrome.storage.local.get({'cards': []}, function(result){
-		let cards = result.cards;
-
+	StorageManager.CARDS(function(cards) {
 		let tbody = document.createElement('tbody');
 		for (let i = 0; i < cards.length; i++){	
-			tbody.appendChild(createRow(cards[i].word, cards[i].translation,
+			tbody.appendChild(createRow(cards[i].id, 
+																	cards[i].word, cards[i].translation,
 																	cards[i].showDate, cards[i].showNumber));
 		}
 
@@ -41,10 +40,13 @@ function createTable(){
 					progressCol.setAttribute("align", "center");
 				progressCol.appendChild(document.createTextNode("Progress"));
 
+				let removeCol = document.createElement('th');
+
 			header.appendChild(wordCol);
 			header.appendChild(translationCol);
 			header.appendChild(showDateCol);
 			header.appendChild(progressCol);
+			header.appendChild(removeCol);
 
 		thead.appendChild(header);
 
@@ -53,7 +55,7 @@ function createTable(){
 	return table
 }
 
-function createRow(word, translation, showDate, showNumber){
+function createRow(id, word, translation, showDate, showNumber){
 	let row = document.createElement('tr');
 		
 		let wordCol = document.createElement('td');
@@ -75,16 +77,41 @@ function createRow(word, translation, showDate, showNumber){
 
 		let progressCol = document.createElement('td');
 			let progress = document.createElement('progress');
-			progress.setAttribute('value', 21 - showNumber);
-			progress.setAttribute('max', "21");
+				progress.setAttribute('value', 21 - showNumber);
+				progress.setAttribute('max', "21");
 		progressCol.appendChild(progress);
+
+		let removeCol = document.createElement('td');
+			removeCol.setAttribute("align", "center");
+			let button = document.createElement('button');
+				button.setAttribute("class", "removeButton");
+				button.setAttribute("id", id);
+				button.innerHTML = '&#x2573;';
+				button.addEventListener("click", removeCard);
+		removeCol.appendChild(button);
 
 	row.appendChild(wordCol);
 	row.appendChild(translationCol);
 	row.appendChild(showDateCol);
 	row.appendChild(progressCol);
+	row.appendChild(removeCol);
 
 	return row;
+}
+
+function removeCard(event){
+	let id = event.target.id;
+	let row = event.target.parentElement.parentElement;
+	let tbody = row.parentElement;
+	if (window.confirm("Are you sure?")){
+		StorageManager.deleteCardById(id, function(isDeleted){
+			if (isDeleted){
+				chrome.alarms.clear(id);
+				chrome.notifications.clear(id);
+				tbody.removeChild(row);
+			} 
+		});
+	}
 }
 
 function addCard(){
@@ -112,7 +139,7 @@ function addCard(){
 
 	  		//update table
 				document.getElementsByTagName('table')[0]
-								.appendChild(createRow(card.word, card.translation,
+								.appendChild(createRow(card.id, card.word, card.translation,
 																			 card.showDate, card.showNumber));
 	  	}
 		});	

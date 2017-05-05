@@ -13,14 +13,17 @@ table {
 table tr:hover {
   background: #fff9c4;
 }
+
 table tr:hover td {
   color: #555;
 }
+
 table th, table td {
   color: #757575;
-  padding: 12px 35px;
+  padding: 12px 25px;
   border-collapse: collapse;
 }
+
 table th {
   background: #ffee58;
   color: #000;
@@ -28,8 +31,13 @@ table th {
   font-size: 12px;
 }
 
-table th.last {
+table th:last-child {
   border-right: none;
+}
+
+table th:last-child, table td:last-child {
+  padding: 12px 0px;
+  padding-right: 5px;
 }
 
 /*** PROGRESS BAR ***/
@@ -81,7 +89,7 @@ button#addCard {
   color: #000000;
 
   background: #ffee58;
-  border-radius: 100%;
+  border-radius: 50%;
   border: solid #9EAC83 0px;
   
   display: table-column;
@@ -91,4 +99,20 @@ button#addCard {
 
 button#addCard:hover {
   background: #fdd835;
+}
+
+/*** REMOVE CARD ***/
+button.removeButton{
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  color: #e53935;
+  padding: 4px 9px 4px 9px;
+}
+
+button.removeButton:hover{
+  background: #f44336;
+  border: none;
+  color: #000;
+  border-radius: 50%;
 }
