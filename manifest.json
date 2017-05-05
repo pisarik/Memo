@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	
 	"version": "1.0",
-	"version_name": "beta",
+	"version_name": "1.0 dev",
 	
 	"name": "Memo",
 	"description": "Расширение для эффективного запоминания английских слов по методике интервальных повторений.",//"Memo is a chrome extension for efficient memorizing english words while you surfing net. Based on spaced repetitions.",
