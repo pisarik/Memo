@@ -29,12 +29,7 @@
   "content_scripts": [
   	{
   		"matches": ["*://*/*"],
-  		"js": ["executeScript.js"/*"3rdparty/jquery-3.2.1.min.js", "3rdparty/bootstrap-3.3.7.min.js", 
-  			"storageManager.js", "card.js", "popover/popover.js",
-  			"wordLogger.js",  "translater.js", "cardScheduler.js",
-  			"commonDefs.js", "utilities.js"*/
-  			],
-  		"css": ["popover/memoPopover.css"],
+  		"js": ["executeScript.js"],
   		"run_at": "document_end"
   	}
   ],
@@ -43,6 +38,7 @@
   	"storage",
   	"alarms",
   	"notifications",
+  	"activeTab",
     "https://ajax.googleapis.com/"
   ]
 }

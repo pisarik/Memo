@@ -15,6 +15,9 @@ function memoPopoverAddClick(word, translation){
 	StorageManager.addCard(card, function(isAdded){
 		if (isAdded){
 			//notify background for adding new alarm
+			let msg = { type: "start_handle_card",
+									card: card
+								};
   		chrome.runtime.sendMessage(null, card);
   	}
 	});
