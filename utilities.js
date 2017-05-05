@@ -1,15 +1,15 @@
 function isCardExist(cards, card){
-	for (let i = 0; i < cards.length; i++){
-		if (card.equals(cards[i])){
-			return true;
-		}
-	}
+  for (let i = 0; i < cards.length; i++){
+    if (card.equals(cards[i])){
+      return true;
+    }
+  }
 
-	return false;
+  return false;
 }
 
 function isStaticPageText(node){
-	return node.nodeName !== "INPUT" && node.nodeName !== "TEXTAREA";
+  return node.nodeName !== "INPUT" && node.nodeName !== "TEXTAREA";
 }
 
 function guid() {
@@ -25,7 +25,7 @@ function guid() {
 function positiveZeroPad(num, size) {
     let s = num+"";
     while (s.length < size) 
-    	s = "0" + s;
+      s = "0" + s;
 
     return s;
 }
@@ -46,6 +46,6 @@ function formatDate(date) {
   let mins = date.getMinutes();
 
   return [positiveZeroPad(hours, 2) + ':' + positiveZeroPad(mins, 2), 
-  				day + ' ' + monthNames[monthIndex]
+          day + ' ' + monthNames[monthIndex]
   ];
 }

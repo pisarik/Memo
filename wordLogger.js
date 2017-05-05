@@ -1,21 +1,21 @@
 document.body.addEventListener('dblclick', function(event){
-	//show popover everywhere except input
-	if (isStaticPageText(event.target)){
-		let word = window.getSelection().toString();
+  //show popover everywhere except input
+  if (isStaticPageText(event.target)){
+    let word = window.getSelection().toString();
 
-		if (word.length > 1){
-			let callback = function(translation){
-				showPopoverTranslation(word, translation);
-			}
+    if (word.length > 1){
+      let callback = function(translation){
+        showPopoverTranslation(word, translation);
+      }
 
-		  memoTranslater.translate(word, "en", "ru", callback);
-		}
-	}
+      memoTranslater.translate(word, "en", "ru", callback);
+    }
+  }
 });
 
 function showPopoverTranslation(word, translation){
-	let a = document.createElement("span");
-	a.className = "MemoPopoverSpan";
+  let a = document.createElement("span");
+  a.className = "MemoPopoverSpan";
   a.setAttribute('tabindex', "0");
   a.setAttribute('data-container', "body");
   a.setAttribute('data-template', memoPopoverTemplate);
@@ -25,7 +25,7 @@ function showPopoverTranslation(word, translation){
   a.setAttribute('data-html', "true");
   a.setAttribute('data-content', "<b>" + translation + "</b>");
 
-	let wordElem = window.getSelection();
+  let wordElem = window.getSelection();
   let range = wordElem.getRangeAt(0).cloneRange();
 
   range.surroundContents(a);
@@ -37,7 +37,7 @@ function showPopoverTranslation(word, translation){
     $popup.find('button.memo-popover-add').click(function (e) {
         memoPopoverAddClick(word, translation);
     });
-	});
+  });
 
   setTimeout(function(){
     $('.MemoPopoverSpan').popover("show");
@@ -52,7 +52,7 @@ $(document).on('click', function(e) {
     //the 'has' for icons within a button that triggers a popup
     if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
       $(this).popover('hide').data('bs.popover').inState.click = false // fix for BS 3.3.6
-	  	$(this).contents().unwrap();
+      $(this).contents().unwrap();
     }
 
   });

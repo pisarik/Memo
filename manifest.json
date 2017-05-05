@@ -1,16 +1,16 @@
 {
-	"manifest_version": 2,
-	
-	"version": "1.0",
-	"version_name": "1.0 dev",
-	
-	"name": "Memo",
-	"description": "Расширение для эффективного запоминания английских слов по методике интервальных повторений.",//"Memo is a chrome extension for efficient memorizing english words while you surfing net. Based on spaced repetitions.",
+  "manifest_version": 2,
+  
+  "version": "1.0",
+  "version_name": "1.0 dev",
+  
+  "name": "Memo",
+  "description": "Расширение для эффективного запоминания английских слов по методике интервальных повторений.",//"Memo is a chrome extension for efficient memorizing english words while you surfing net. Based on spaced repetitions.",
   "icons": {  "48": "images/icon_48.png" },
 
-	//"default_locale": "ru", need for internationalization, while only ru
+  //"default_locale": "ru", need for internationalization, while only ru
 
-	"browser_action": {
+  "browser_action": {
     "default_icon": "images/popup_32.png",
     "default_title": "Memo",
     "default_popup": "popup/popup.html"
@@ -21,25 +21,25 @@
     "chrome_style": true
   },
 
- 	"background":{
- 		"scripts": ["storageManager.js", "progressManager.js", "notificationManager.js", "cardScheduler.js", 
- 								"commonDefs.js", "background.js", "utilities.js"]
- 	},
+  "background":{
+    "scripts": ["storageManager.js", "progressManager.js", "notificationManager.js", "cardScheduler.js", 
+                "commonDefs.js", "background.js", "utilities.js"]
+  },
 
   "content_scripts": [
-  	{
-  		"matches": ["*://*/*"],
-  		"js": ["executeScript.js"],
-  		"run_at": "document_end"
-  	}
+    {
+      "matches": ["*://*/*"],
+      "js": ["executeScript.js"],
+      "run_at": "document_end"
+    }
   ],
 
   "permissions": [
-  	"storage",
-  	"alarms",
-  	"notifications",
-  	"activeTab",
-  	"*://*/",
+    "storage",
+    "alarms",
+    "notifications",
+    "activeTab",
+    "*://*/",
     "https://ajax.googleapis.com/"
   ]
 }

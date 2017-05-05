@@ -1,6 +1,6 @@
 function showPopoverChanged(){
-	let showPopover = document.getElementById('showPopover').checked;
-	chrome.storage.sync.set({
+  let showPopover = document.getElementById('showPopover').checked;
+  chrome.storage.sync.set({
     showPopover: showPopover,
   });
 }
