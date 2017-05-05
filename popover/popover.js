@@ -18,7 +18,7 @@ function memoPopoverAddClick(word, translation){
 			let msg = { type: "start_handle_card",
 									card: card
 								};
-  		chrome.runtime.sendMessage(null, card);
+  		chrome.runtime.sendMessage(null, msg);
   	}
 	});
 }
